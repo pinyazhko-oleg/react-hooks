@@ -16,7 +16,11 @@ const App = () => {
     }, [])
 
     useEffect(() => {
+        document.addEventListener('click', handleClick)
         localStorage.setItem('todos', JSON.stringify(todos))
+        return () => {
+            document.removeEventListener('click', handleClick)
+        }
     }, [todos])
 
     const addTodo = (e) => {
