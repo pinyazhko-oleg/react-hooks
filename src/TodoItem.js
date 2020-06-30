@@ -1,32 +1,35 @@
-import React, {useState} from 'react'
+import React, {useContext} from 'react'
+import {Context} from "./context"
 
 const TodoItem = ({title, id, completed}) => {
-  const [checked, setChecked] = useState(completed)
 
-  const cls = ['todo']
+    const {toggleTodo, removeTodo} = useContext(Context)
 
-  if (checked) {
-    cls.push('completed')
-  }
+    const cls = ['todo']
 
-  return (
-    <li className={cls.join(' ')}>
-      <label>
-        <input
-          type="checkbox"
-          checked={checked}
-          onChange={() => setChecked(!checked)}
-        />
-        <span>{title}</span>
+    if (completed) {
+        cls.push('completed')
+    }
 
-        <i
-          className="material-icons red-text"
-        >
-          delete
-        </i>
-      </label>
-    </li>
-  )
+    return (
+        <li className={cls.join(' ')}>
+            <label>
+                <input
+                    type="checkbox"
+                    checked={completed}
+                    onChange={() => toggleTodo(id)}
+                />
+                <span>{title}</span>
+
+                <i
+                    className="material-icons red-text"
+                    onClick={() => removeTodo(id)}
+                >
+                    delete
+                </i>
+            </label>
+        </li>
+    )
 }
 
 export default TodoItem
