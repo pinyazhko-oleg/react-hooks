@@ -5,7 +5,7 @@ import reduser from "./reduser"
 
 const App = () => {
     const [state, dispatch] = useReducer(reduser, JSON.parse(localStorage.getItem('todos')))
-    //const [todos, setTodos] = useState([])
+
     const [todoTitle, setTodoTitle] = useState('')
 
     useEffect(() => {
